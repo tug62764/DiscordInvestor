@@ -1,0 +1,1 @@
+#  result = r.order_sell_option_limit(positionEffect = 'close',creditOrDebit = 'debit',expirationDate = option['Expire'], symbol=option['symbol'],strike = option['strike'],  quantity = option['quantity'],price = option['limitPrice'], optionType = 'call' )
