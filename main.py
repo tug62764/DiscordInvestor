@@ -2,13 +2,11 @@
 import os
 import Broker as BR
 import discord
-from dotenv import load_dotenv
-import Test as TT
-import unittest
 
 # load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
-  
+# TOKEN = os.getenv('DISCORD_TOKEN')
+TOKEN = 'NzQ4Mjc5NjU1MTc3NTE5MjA2.X0bHvA.unYGeGcLidO0MlZXR_YdMnIuMGQ'
+print(TOKEN)
 client = discord.Client()
 BRService = None
 BRServiceList = []
@@ -16,7 +14,8 @@ BRServiceList = []
 @client.event
 async def on_ready():
   global BRService
-  BRService = BR.Broker(userName = 'natan132', password = 'Moneymakingmachine1!')
+  BRService = BR.Broker(userName = 'natan132', password = 'Gottachangethisagain1!')
+  # BRService = BR.Broker(userName = 'tug58366@temple.edu', password = 'Ethiopian44')
   BRServiceList.append(BRService)
   response = BRService.login()
   print('\n', response, '\n')
@@ -47,10 +46,10 @@ async def on_message(message):
     elif messageList[0] == 'logout':
       response = BRService.logout()
       await message.channel.send(str(response))
-    elif messageList[0] == 'buyOption':
+    elif messageList[0] == '.buy':
       response = BRService.buyOption(messageList)
       await message.channel.send(str(response))
-    elif messageList[0] == 'sellOption':
+    elif messageList[0] == '.sell':
       response = BRService.sellOption(messageList[1])
       await message.channel.send(str(response))
     elif messageList[0] == 'buyStock':
@@ -59,20 +58,21 @@ async def on_message(message):
     elif messageList[0] == 'sellStock':
       response = BRService.sellStock(messageList)
       await message.channel.send(str(response))
-    elif messageList[0] == 'orders':
-      response = BRService.sellStock(messageList)
-      await message.channel.send(str(response))
-    elif messageList[0] == 'options':
+    elif messageList[0] == '.options':
       response = BRService.getAllOptionOrders()
       await message.channel.send(str(response))
     elif messageList[0] == 'stocks':
       response = BRService.getAllStockOrders()
       await message.channel.send(str(response))
-    elif messageList[0] == 'testFindPrice':
-      # findPrice
-      response = BRService.findPrice()
+    elif messageList[0] == 'help':
+      response = BRService.help()
+      await message.channel.send(str(response))
+    elif messageList[0] == 'test':
+      response = BRService.getDayTradeLimit()
       await message.channel.send(str(response))
     else:
       raise discord.DiscordException
 
+    # getOpenOptionOrders
+# getBuyingPower
 client.run(TOKEN)
